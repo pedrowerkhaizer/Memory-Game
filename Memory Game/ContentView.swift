@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     let emojis: Array<String> = ["👻", "🎃", "🕷️", "😈"]
-    // let emojis: [Sring] = [] is another option
+    // let emojis: [String] = [] is another option
 
     var body: some View {
         HStack() {
