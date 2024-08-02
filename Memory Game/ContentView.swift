@@ -10,10 +10,10 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         HStack() {
-            CardView(isFaceUp: true)
             CardView()
+            CardView(emojiText: "👨🏻‍💻")
             CardView()
-            CardView(isFaceUp: true, emojiText: "👨🏻‍💻")
+            CardView(emojiText: "👨🏻‍💻")
             
         }
         .foregroundColor(.blue)
@@ -22,21 +22,23 @@ struct ContentView: View {
 }
 
 struct CardView: View {
-    var isFaceUp: Bool = false
-    var emojiText: String = "🤠"
+    @State var isFaceUp = false
+    var emojiText = "🤠"
     
     var body: some View {
-        ZStack() {
+        ZStack {
+            let base = RoundedRectangle(cornerRadius: 12)
             if isFaceUp{
-                RoundedRectangle(cornerRadius: 12)
-                    .foregroundColor(.white)
-                RoundedRectangle(cornerRadius: 12)
-                    .strokeBorder(lineWidth: 2)
+                base.fill(.white)
+                base.strokeBorder(lineWidth: 2)
                 Text(emojiText).font(.largeTitle)
             }
             else {
-                RoundedRectangle(cornerRadius: 12)
+                base
             }
+        }
+        .onTapGesture {
+            isFaceUp.toggle()
         }
     }
 }
